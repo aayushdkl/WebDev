@@ -57,9 +57,13 @@ app.post("/", function (req, res) {
 });
 
 app.put("/", function (req, res) {
-  for (i = 0; i < users[0].kidneys.length; i++) {
-    users[0].kidneys[i].health = true;
-    res.json({});
+  if (check()) {
+    for (i = 0; i < users[0].kidneys.length; i++) {
+      users[0].kidneys[i].health = true;
+      res.json({});
+    }
+  } else {
+    res.status(411).json({ message: "No unhealthy kidneys to remove!" });
   }
 });
 
