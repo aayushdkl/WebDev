@@ -64,18 +64,31 @@ app.put("/", function (req, res) {
 });
 
 app.delete("/", function (req, res) {
-  let new_array = [];
-
-  for (i = 0; i < users[0].kidneys.length; i++) {
-    if (users[0].kidneys[i].health) {
-      new_array.push({
-        health: true,
-      });
-      // new_array.push(users[0].kidneys[i]);
+  if (check()) {
+    let new_array = [];
+    for (i = 0; i < users[0].kidneys.length; i++) {
+      if (users[0].kidneys[i].health) {
+        new_array.push({
+          health: true,
+        });
+        // new_array.push(users[0].kidneys[i]);
+      }
+      users[0].kidneys = new_array;
     }
-    users[0].kidneys = new_array;
+    res.json({});
+  } else {
+    res.status(411).json({ message: "No unhealthy kidneys to delete!" });
   }
-  res.json({});
 });
+
+function check() {
+  let unhkid = false;
+  for (i = 0; i < users[0].kidneys.length; i++) {
+    if (!users[0].kidneys[i].health) {
+      unhkid = true;
+    }
+  }
+  return unhkid;
+}
 
 app.listen(3000);
