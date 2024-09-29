@@ -96,3 +96,5 @@ function check() {
 }
 
 app.listen(3000);
+
+//Code for hospital management system
