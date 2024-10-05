@@ -1,0 +1,1 @@
+From b.txt the file is shown
