@@ -39,11 +39,98 @@
 
   Testing the server - run `npm run test-todoServer` command in terminal
  */
-  const express = require('express');
-  const bodyParser = require('body-parser');
-  
-  const app = express();
-  
-  app.use(bodyParser.json());
-  
-  module.exports = app;
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+
+app.use(bodyParser.json());
+
+module.exports = app;
+
+const to_do_list_array = [];
+
+app.get("/todos", (req, res) => {
+  res.status(200).json(to_do_list_array); //The difference between .json(to_do_list_array) and .json({to_do_list_array}) is that the former sends the array as it is, while the latter sends the array as a value of a key named to_do_list_array.
+});
+
+app.get("/todos/:id", (req, res) => {
+  const id_of_to_do_recieved = parseInt(req.params.id);
+  const element_id_to_disp = to_do_list_array.find(
+    (x) => x.id == id_of_to_do_recieved
+  );
+  //I used find() instead of filter() because find() returns the first element that satisfies the condition, while filter() returns all elements that satisfy the condition.
+
+  if (element_id_to_disp) {
+    res.status(200).json(element_id_to_disp);
+  } else {
+    res.status(404).send("404 not found");
+  }
+});
+
+app.post("/todos", (req, res) => {
+  const to_do_to_add = req.body;
+  // let max_id_no = 0;
+
+  // for (let i = 0; i < to_do_list_array.length; i++) {
+  //   if (to_do_list_array[i].id > max_id_no) {
+  //     max_id_no = to_do_list_array[i].id;
+  //   }
+  // }
+
+  // const new_ele_id = max_id_no + 1;
+
+  //Generating a random id using Math.random() and Math.floor()
+  const new_ele_id = Math.floor(Math.random() * 1000000);
+
+  const new_elem = {
+    id: new_ele_id,
+    title: req.body.title,
+    description: req.body.description,
+    completed: req.body.completed,
+  };
+
+  to_do_list_array.push(new_elem);
+
+  res.status(201).json(new_elem);
+});
+
+app.put("/todos/:id", (req, res) => {
+  elem_no_to_update = parseInt(req.params.id);
+  const updated_content = req.body;
+
+  const index_no = to_do_list_array.findIndex((x) => x.id == elem_no_to_update);
+  if (index_no == -1) {
+    res.status(404).send("Not found");
+  } else {
+    to_do_list_array[index_no].title = updated_content.title;
+    to_do_list_array[index_no].description = updated_content.description;
+    to_do_list_array[index_no].completed = updated_content.completed;
+
+    res.status(200).json(to_do_list_array[index_no]);
+  }
+});
+
+app.delete("/todos/:id", (req, res) => {
+  elem_no_to_del = parseInt(req.params.id);
+  const index_no_to_del = to_do_list_array.findIndex(
+    (x) => x.id == elem_no_to_del
+  );
+
+  if (index_no_to_del == -1) {
+    res.status(404).send("404 not found");
+  } else {
+    to_do_list_array.slice(index_no_to_del, 1);
+    res.status(200).send("deleted succesfully");
+  }
+});
+
+app.all("*", (req, res) => {
+  res.status(404).send("Undefined route");
+});
+
+//    0     1     2     3     4
+// |     |     |     |     |     |
+// |  S  |  L  |  I  |  C  |  E  |
+// |     |     |     |     |     |
+//   -5    -4    -3    -2    -1
