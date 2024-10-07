@@ -35,3 +35,54 @@ app.get(
 app.use(function (err, req, res, next) {
   res.status(404).send("404 not found");
 });
+
+// Some most used zod methods:
+// zod.string() - This method is used to validate a string value.
+// zod.number() - This method is used to validate a number value.
+// zod.boolean() - This method is used to validate a boolean value.
+// zod.array() - This method is used to validate an array value.
+// zod.object() - This method is used to validate an object value.
+// zod.email() - This method is used to validate an email value.
+// zod.url() - This method is used to validate a URL value.
+// zod.min() - This method is used to validate that a value is greater than or equal to a specified minimum value.
+// zod.max() - This method is used to validate that a value is less than or equal to a specified maximum value.
+// zod.length() - This method is used to validate that a value has a specified length.
+// zod.optional() - This method is used to validate that a value is optional.
+// zod.nullable() - This method is used to validate that a value can be null.
+// zod.refine() - This method is used to add custom validation logic to a value.
+// zod.transform() - This method is used to transform a value before validation.
+// zod.parse() - This method is used to parse a value before validation.
+// zod.unknown() - This method is used to validate any value.
+
+// EG1:
+// An example of zod schema is:
+// const schema = zod.object({
+//   email: zod.string().email(),
+//   password: zod.string().min(8),
+// });
+
+// A data object that matches the schema:
+// const data = {
+//   email: " example@gmail.com ",
+//   password: "password123",
+// };
+
+// A data object that does not match the schema:
+// const invalidData = {
+//   email: "example",
+//   password: "password",
+// };
+
+// Second example of zod schema is:
+// const schema = zod.object({
+//   name: zod.string(),
+//   age: zod.number().min(18),
+//   email: zod.string().email(),
+// });
+
+// A data object that matches the schema:
+// const data = {
+//   name: "John Doe",
+//   age: 25,
+//   email: "  "
+// };
