@@ -1,4 +1,5 @@
 const express = require("express");
+const { default: test } = require("node:test");
 const z = require("zod");
 
 const app = express();
@@ -15,17 +16,13 @@ const registerSchema = z.object({
 });
 
 app.post("/register", (req, res) => {
-  const parseResult = registerSchema.safeParse(req.body);
+  const test_result = registerSchema.safeParse(req.body);
 
-  if (!parseResult.success) {
-    const errors = parseResult.error.errors.map((err) => ({
-      field: err.path[0],
-      message: err.message,
-    }));
+  if (!test_result.success) {
     return res.status(400).json({ errors });
   }
 
-  const userData = parseResult.data;
+  const userData = test_result.data;
   //registration logic
   res
     .status(201)

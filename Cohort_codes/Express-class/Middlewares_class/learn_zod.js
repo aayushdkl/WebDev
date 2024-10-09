@@ -135,6 +135,6 @@ const ProductSchema = z.object({
 });
 
 const result = ProductSchema.safeParse(product);
+console.log(JSON.stringify(result));
 // console.log(result);
 // console.dir(result, { depth: null });
-// console.log(JSON.stringify(result));
