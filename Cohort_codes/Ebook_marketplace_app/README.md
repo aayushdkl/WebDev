@@ -1,212 +1,183 @@
-# E-Book Marketplace App
+# 📚 Ebook Marketplace
 
-## Description
+Welcome to the **Ebook Marketplace**, an application where authors can publish their books and readers can browse, purchase, and enjoy ebooks! This platform facilitates a seamless interaction between authors and readers, allowing for content creation, purchasing, and reviewing of ebooks.
 
-You need to implement an e-book marketplace app with two types of users:
+---
 
-- **Authors**
-- **Readers**
+## 🌟 Features
 
-Authors are allowed to sign up and create e-books. Readers are allowed to sign up, view e-books, and purchase them.
+### 🔐 **Authentication and Authorization**
 
-This will follow similar authentication rules as the previous app, where in every authenticated request, you must send the JWT in headers (Authorization: "Bearer <actual token>"). Use MongoDB to store the data persistently.
+- Secure **JWT-based authentication** for both Authors and Readers.
+- Each user type has distinct capabilities, ensuring role-based access to features.
+- Authors and Readers can **register**, **login**, and manage their profiles.
 
-## Routes
+### ✍️ **Authors**
 
-### Author Routes:
+- Authors can **create** and **upload ebooks** to the marketplace.
+- Manage personal details and **update profiles** securely.
+- View sales information and manage books they have published.
 
-#### POST /author/signup
+### 📖 **Readers**
 
-- **Description**: Creates a new author account.
-- **Input Body**:
-  ```json
-  { "username": "author", "password": "pass" }
-  ```
-- **Output**:
-  ```json
-  { "message": "Author created successfully" }
-  ```
+- Readers can **browse**, **search**, and **purchase ebooks** from the marketplace.
+- Download purchased ebooks for future reading.
+- Provide feedback by leaving **reviews** and **ratings** for the ebooks they have purchased.
 
-#### POST /author/signin
+### 📚 **Ebooks**
 
-- **Description**: Logs in an author account.
-- **Input Body**:
-  ```json
-  { "username": "author", "password": "pass" }
-  ```
-- **Output**:
-  ```json
-  { "token": "your-token" }
-  ```
+- Ebooks come with detailed information including **title**, **description**, **price**, and **author**.
+- Readers can view individual ebook pages with details and reviews.
+- Purchased ebooks can be accessed and downloaded at any time by the reader.
 
-#### POST /author/ebooks
+---
 
-- **Description**: Creates a new e-book.
-- **Input**:
-  - **Headers**:
-    ```json
-    { "Authorization": "Bearer <your-token>" }
-    ```
-  - **Body**:
-    ```json
-    {
-      "title": "ebook title",
-      "description": "ebook description",
-      "price": 50,
-      "downloadLink": "https://linktoebook.com"
-    }
-    ```
-- **Output**:
-  ```json
-  { "message": "E-book created successfully", "ebookId": "new e-book id" }
-  ```
+## 🗂 **Project Structure**
 
-#### GET /author/ebooks
+The project is organized into clear directories for better modularity and maintainability. Here's a breakdown of the directory structure:
 
-- **Description**: Returns all the e-books created by the author.
-- **Input**:
-  - **Headers**:
-    ```json
-    { "Authorization": "Bearer <your-token>" }
-    ```
-- **Output**:
-  ```json
-  {
-    "ebooks": [
-      {
-        "id": 1,
-        "title": "ebook title",
-        "description": "ebook description",
-        "price": 50,
-        "downloadLink": "https://linktoebook.com",
-        "available": true
-      },
-      ...
-    ]
-  }
-  ```
+```
+📦 Ebook Marketplace
+├── 📂 controllers          # Business logic for different features
+│   ├── authorController.js # Handles author-specific requests
+│   ├── readerController.js # Handles reader-specific requests
+│   └── ebookController.js  # Handles ebook-related actions
+├── 📂 models               # MongoDB schemas and data models
+│   ├── Author.js           # Model for author data
+│   ├── Reader.js           # Model for reader data
+│   └── Ebook.js            # Model for ebook data
+├── 📂 routes               # Route definitions for APIs
+│   ├── authorRoutes.js     # Endpoints related to author actions
+│   ├── readerRoutes.js     # Endpoints related to reader actions
+│   └── ebookRoutes.js      # Endpoints related to ebook management
+├── 📂 middlewares          # Custom middleware for request handling
+│   └── authMiddleware.js   # Middleware for JWT-based authorization
+├── 📂 services             # Service layer for business logic
+│   ├── authorService.js    # Logic for handling author-related operations
+│   ├── readerService.js    # Logic for handling reader-related operations
+│   └── ebookService.js     # Logic for ebook-related operations
+├── 📂 utils                # Utility functions for handling common tasks
+│   └── jwtUtils.js         # Functions for generating and verifying JWTs
+├── 📂 config               # Configuration files
+│   └── dbConfig.js         # MongoDB connection setup
+├── .env                    # Environment variables (DB URIs, JWT secrets, etc.)
+├── server.js               # Main entry point for the application
+├── README.md               # Documentation for the project
+└── package.json            # Project metadata and dependencies
+```
 
-### Reader Routes:
+---
 
-#### POST /reader/signup
+## 🚀 **Getting Started**
 
-- **Description**: Creates a new reader account.
-- **Input**:
-  ```json
-  { "username": "reader", "password": "pass" }
-  ```
-- **Output**:
-  ```json
-  { "message": "Reader created successfully" }
-  ```
+### 1. **Clone the Repository**
 
-#### POST /reader/signin
+```bash
+git clone https://github.com/yourusername/ebook-marketplace.git
+cd ebook-marketplace
+```
 
-- **Description**: Logs in a reader account.
-- **Input**:
-  ```json
-  { "username": "reader", "password": "pass" }
-  ```
-- **Output**:
-  ```json
-  { "token": "your-token" }
-  ```
+### 2. **Install Dependencies**
 
-#### GET /reader/ebooks
+Install the necessary Node.js packages by running:
 
-- **Description**: Lists all the available e-books.
-- **Input**:
-  - **Headers**:
-    ```json
-    { "Authorization": "Bearer <your-token>" }
-    ```
-- **Output**:
-  ```json
-  {
-    "ebooks": [
-      {
-        "id": 1,
-        "title": "ebook title",
-        "description": "ebook description",
-        "price": 50,
-        "downloadLink": "https://linktoebook.com",
-        "available": true
-      },
-      ...
-    ]
-  }
-  ```
+```bash
+npm install
+```
 
-#### POST /reader/ebooks/<ebookId>
+### 3. **Configure Environment Variables**
 
-- **Description**: Purchases an e-book. The ebookId in the URL path should be replaced with the ID of the e-book to be purchased.
-- **Input**:
-  - **Headers**:
-    ```json
-    { "Authorization": "Bearer <your-token>" }
-    ```
-- **Output**:
-  ```json
-  { "message": "E-book purchased successfully" }
-  ```
+Create a `.env` file in the project root and add the following:
 
-#### GET /reader/purchasedEbooks
+```bash
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
 
-- **Description**: Lists all the e-books purchased by the reader.
-- **Input**:
-  - **Headers**:
-    ```json
-    { "Authorization": "Bearer <your-token>" }
-    ```
-- **Output**:
+### 4. **Set Up MongoDB Connection**
 
-  ```json
-  {
-    "purchasedEbooks": [
-      {
-        "id": 1,
-        "title": "ebook title",
-        "description": "ebook description",
-        "price": 50,
-        "downloadLink": "https://linktoebook.com",
-        "available": true
-      },
-      ...
-    ]
-  }
-  ```
+Make sure your MongoDB instance is up and running and properly configured in the `dbConfig.js` file.
 
-  e-book-marketplace-app/
-  │
-  ├── controllers/
-  │ ├── authorController.js # Logic for author-related routes
-  │ ├── readerController.js # Logic for reader-related routes
-  │
-  ├── models/
-  │ ├── authorModel.js # MongoDB schema for authors
-  │ ├── readerModel.js # MongoDB schema for readers
-  │ ├── ebookModel.js # MongoDB schema for e-books
-  │
-  ├── routes/
-  │ ├── authorRoutes.js # Routes for author actions (signup, signin, create ebook, list ebooks)
-  │ ├── readerRoutes.js # Routes for reader actions (signup, signin, view ebooks, purchase ebooks)
-  │
-  ├── middlewares/
-  │ ├── authMiddleware.js # Middleware for JWT authentication
-  │
-  ├── services/
-  │ ├── authorService.js # Handles business logic for authors
-  │ ├── readerService.js # Handles business logic for readers
-  │ ├── ebookService.js # Handles business logic for e-books
-  │
-  ├── utils/
-  │ ├── jwtUtils.js # Utility functions for JWT handling (generate token, verify token)
-  │
-  ├── config/
-  │ ├── dbConfig.js # MongoDB connection configuration
-  │
-  ├── app.js # Main app entry point where Express is set up
-  ├── package.json # Dependencies and scripts
-  ├── .env # Environment variables (e.g., MongoDB URI, JWT secret)
-  ├── .gitignore # Files to ignore in git (e.g., node_modules, .env)
-  └── README.md # Project documentation
+### 5. **Start the Application**
+
+Launch the server with the following command:
+
+```bash
+npm start
+```
+
+The app will run on `http://localhost:5000`.
+
+---
+
+## 📋 **API Endpoints**
+
+### **Authentication Endpoints**:
+
+- **POST** `/auth/register`: Register a new user (Author or Reader).
+- **POST** `/auth/login`: Login as an Author or Reader.
+
+### **Author-Specific Endpoints**:
+
+- **GET** `/authors/profile`: Get the authenticated author’s profile.
+- **PUT** `/authors/profile`: Update the authenticated author’s profile.
+- **POST** `/authors/ebooks`: Upload a new ebook to the platform.
+- **GET** `/authors/ebooks`: Get all ebooks uploaded by the authenticated author.
+
+### **Reader-Specific Endpoints**:
+
+- **GET** `/readers/profile`: Get the authenticated reader’s profile.
+- **PUT** `/readers/profile`: Update the authenticated reader’s profile.
+- **GET** `/readers/ebooks`: Browse and view all available ebooks.
+- **POST** `/readers/ebooks/:id/purchase`: Purchase a specific ebook.
+- **GET** `/readers/purchased-books`: List all ebooks purchased by the reader.
+
+### **Ebook Endpoints**:
+
+- **GET** `/ebooks/:id`: Fetch details of a specific ebook by its ID.
+- **POST** `/ebooks/:id/reviews`: Leave a review for an ebook.
+- **GET** `/ebooks`: Get a list of all available ebooks.
+
+---
+
+## ⚙️ **Technologies Used**
+
+- **Node.js**: Backend framework.
+- **Express.js**: Web framework for Node.js.
+- **MongoDB**: NoSQL database for storing data.
+- **Mongoose**: Object Data Modeling (ODM) library for MongoDB.
+- **JWT (JSON Web Tokens)**: For authentication and authorization.
+- **dotenv**: For managing environment variables.
+- **bcrypt.js**: For hashing passwords.
+
+---
+
+## 🛠 **Running Tests**
+
+To run the tests, ensure that the app is up and running, and execute the following command:
+
+```bash
+npm test
+```
+
+---
+
+## 📈 **Future Improvements**
+
+Here are some planned enhancements for the platform:
+
+- Implement advanced search functionality for ebooks by categories, genres, and ratings.
+- Add the ability for authors to track real-time sales data.
+- Allow readers to create wishlists and bookmark ebooks.
+- Integrate third-party payment gateways for purchasing ebooks.
+
+---
+
+## 📧 **Contact**
+
+For any questions or inquiries, please reach out at: **https://www.facebook.com/ayushdkl7/**
+
+---
+
+**Enjoy using the Ebook Marketplace!** ✨
