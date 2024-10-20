@@ -1,0 +1,39 @@
+import e from "cors"
+import { useState } from "react"
+
+export function NameAndAge() {
+  const [name, setName] = useState("Marshall")
+  const [age, setAge] = useState(52)
+
+  function increaseAge() {
+    setAge(parseInt(age + 1))
+  }
+
+  return (
+    <div>
+      <label>Input name here</label>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => {
+          setName(e.target.value)
+        }}
+      />
+      <br />
+      <label>Input age here</label>
+      <button onClick={increaseAge}>+</button>
+      {age}
+      <button
+        onClick={(e) => {
+          setAge(age - 1)
+        }}
+      >
+        -
+      </button>
+
+      <h2>
+        My name is {name} and age is {age}
+      </h2>
+    </div>
+  )
+}
