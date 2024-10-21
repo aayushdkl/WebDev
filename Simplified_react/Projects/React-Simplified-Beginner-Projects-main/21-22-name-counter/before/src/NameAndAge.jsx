@@ -1,9 +1,13 @@
 import e from "cors"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export function NameAndAge() {
   const [name, setName] = useState("Marshall")
   const [age, setAge] = useState(52)
+
+  useEffect(() => {
+    console.log("Age was changed", age)
+  }, [age])
 
   function increaseAge() {
     setAge(parseInt(age + 1))
