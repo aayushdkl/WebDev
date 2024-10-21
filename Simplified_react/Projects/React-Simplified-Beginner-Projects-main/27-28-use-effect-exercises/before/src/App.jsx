@@ -8,7 +8,7 @@ export default function App() {
 
   return (
     <div>
-      <button onClick={() => setShow(currentShow => !currentShow)}>
+      <button onClick={() => setShow((currentShow) => !currentShow)}>
         Show/Hide
       </button>
       {childComponent}
