@@ -5,7 +5,7 @@ import "./styles.css"
 function App() {
   // const [count, setCount] = useState(0)
 
-  return <NameAndAge></NameAndAge>
+  return <NameAndAge favNumber={5}></NameAndAge>
 }
 
 export default App

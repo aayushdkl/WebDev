@@ -1,0 +1,139 @@
+/* Style for the main container */
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #f5f5f5;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+/* Style for the header */
+.header {
+  color: #4caf50;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Style for the input section */
+.todo-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.todo-card input[type="text"] {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  width: 250px;
+  margin-right: 10px;
+  transition: border 0.3s ease;
+}
+
+.todo-card input[type="text"]:focus {
+  border-color: #4caf50;
+  outline: none;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Style for buttons */
+.btn {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 14px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0069d9;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+  background-color: #005cbf;
+  transform: translateY(2px);
+}
+
+/* Style for the task list */
+ol {
+  list-style: none; /* Remove default list styling */
+  counter-reset: list-counter; /* Initialize counter for the list */
+  padding-left: 20px;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  counter-increment: list-counter; /* Increment the counter for each li */
+}
+
+li::before {
+  content: counter(list-counter) ". "; /* Display the current count */
+  position: absolute;
+  left: -30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.tasks {
+  flex: 1;
+  font-size: 18px;
+  color: #333;
+  margin-right: 10px;
+}
+
+/* Button styles within the list */
+li .btn {
+  background-color: #f44336;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 20px;
+}
+
+li .btn:nth-child(2) {
+  background-color: #4caf50; /* Upvote */
+}
+
+li .btn:nth-child(3) {
+  background-color: #ff9800; /* Downvote */
+}
+/* Button hover states for specific actions */
+li .btn:nth-child(2):hover {
+  background-color: #388e3c;
+}
+
+li .btn:nth-child(3):hover {
+  background-color: #f57c00;
+}
+
+li .btn:nth-child(1):hover {
+  background-color: #e53935;
+}
+
+/* Button active states */
+li .btn:active {
+  transform: translateY(1px);
+}

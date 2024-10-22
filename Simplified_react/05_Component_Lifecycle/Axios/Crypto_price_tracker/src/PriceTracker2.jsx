@@ -7,17 +7,27 @@ export function PriceTracker2() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    //Fetching data using axios
-    axios
-      .get("https://api.coinlore.net/api/tickers/")
-      .then((res) => {
-        setData(res.data.data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        setError(err.message)
-        setLoading(false)
-      })
+    const fetchData = () => {
+      axios
+        .get("https://api.coinlore.net/api/tickers/")
+        .then((res) => {
+          setData(res.data.data)
+          setLoading(false)
+        })
+        .catch((err) => {
+          setError(err.message)
+          setLoading(false)
+        })
+    }
+
+    // Initial data fetch
+    fetchData()
+
+    // Set interval for subsequent data fetches
+    const intervalId = setInterval(fetchData, 10000) // 60000 ms = 60 seconds
+
+    // Cleanup function to clear the interval
+    return () => clearInterval(intervalId)
   }, [])
 
   if (loading) {

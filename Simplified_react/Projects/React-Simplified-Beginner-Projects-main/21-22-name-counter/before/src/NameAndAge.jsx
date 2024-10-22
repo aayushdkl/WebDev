@@ -1,7 +1,7 @@
 import e from "cors"
 import { useState, useEffect } from "react"
 
-export function NameAndAge() {
+export function NameAndAge({ favNumber }) {
   const [name, setName] = useState("Marshall")
   const [age, setAge] = useState(52)
 
@@ -12,7 +12,6 @@ export function NameAndAge() {
   function increaseAge() {
     setAge(parseInt(age + 1))
   }
-
   return (
     <div>
       <label>Input name here</label>
@@ -38,6 +37,7 @@ export function NameAndAge() {
       <h2>
         My name is {name} and age is {age}
       </h2>
+      {favNumber != null && <h2>My fav no. is {favNumber}.</h2>}
     </div>
   )
 }
