@@ -1,0 +1,80 @@
+/* Form Container */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Label Styles */
+label {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333333;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+  padding: 12px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #555555;
+  background-color: #f7f7f7;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: #6c63ff;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 8px rgba(108, 99, 255, 0.2);
+}
+
+/* Button Styles */
+button[type="submit"] {
+  margin-top: 25px;
+  padding: 12px;
+  background-color: #6c63ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #4a42d6;
+  box-shadow: 0px 4px 8px rgba(74, 66, 214, 0.3);
+}
+
+/* Smooth Hover Effects for Labels */
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  color: #6c63ff;
+}
+
+/* Input Placeholder Style */
+input::placeholder {
+  color: #aaaaaa;
+  font-size: 14px;
+}
+
+/* Remove Default Input Focus Outline */
+input:focus-visible {
+  outline: none;
+}
