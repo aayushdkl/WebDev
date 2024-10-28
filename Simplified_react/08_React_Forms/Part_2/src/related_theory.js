@@ -34,3 +34,12 @@ return (
     <button type="submit">Login</button>
   </form>
 )
+
+<input {...register("email", {
+  required: "Email is required",
+  pattern: { // This line is used to set the pattern rule for the email input field. The pattern rule is used to validate the input field based on a regular expression.Is this the syntax for the pattern rule? Yes, this is the syntax for the pattern rule. You can change the regular expression to anything you want.
+    //The pattern rule consists of two keys: value and message. The value key is used to define the regular expression, and the message key is used to define the error message that will be displayed if the input field does not match the regular expression.
+    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+    message: "Invalid email address"
+  }
+})} />

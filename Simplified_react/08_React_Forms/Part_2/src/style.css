@@ -2,38 +2,48 @@
 form {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  margin: 40px auto;
-  padding: 20px;
-  border: 1px solid #e0e0e0;
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 25px;
   border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f4f5f7;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Label styling */
 label {
   margin-top: 15px;
-  font-weight: bold;
+  font-weight: 600;
   color: #333;
 }
 
 /* Input fields styling */
 input[type="email"],
-input[type="password"] {
-  padding: 10px;
+input[type="password"],
+input[type="checkbox"] {
   margin-top: 5px;
-  border: 1px solid #cccccc;
+  padding: 10px;
   border-radius: 4px;
+  border: 1px solid #ccc;
   font-size: 16px;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+/* Input fields focus effect */
 input[type="email"]:focus,
 input[type="password"]:focus {
-  border-color: #007bff;
+  border-color: #0073e6;
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 0 8px rgba(0, 115, 230, 0.2);
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+  margin-top: 18px;
+  margin-left: 5px;
+  width: 20px;
+  height: 20px;
+  accent-color: #0073e6;
 }
 
 /* Error message styling */
@@ -47,16 +57,38 @@ p {
 button[type="submit"] {
   margin-top: 20px;
   padding: 12px;
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: #0073e6;
+  color: #fff;
   border: none;
   border-radius: 4px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
+/* Button hover effect */
 button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #005bb5;
+  transform: scale(1.05);
+}
+/* Checkbox container styling */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+/* Checkbox styling */
+.checkbox-container input[type="checkbox"] {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  accent-color: #0073e6;
+}
+
+/* Label styling for checkbox */
+.checkbox-container label {
+  font-weight: 600;
+  color: #333;
 }
