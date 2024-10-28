@@ -1,5 +1,6 @@
 import { useState } from "react"
-import "./style.css"
+import FormWithoutReactHookForm from "./form-without-react-hook"
+// import "./style.css"
 // import { BasicControlledInput } from "./BasicControlledInput"
 import { HandlingMultipleInputs } from "./HandlingMultipleInputs"
 
@@ -9,7 +10,8 @@ function App() {
   return (
     <>
       {/* <BasicControlledInput /> */}
-      <HandlingMultipleInputs />
+      {/* <HandlingMultipleInputs /> */}
+      <FormWithoutReactHookForm />
     </>
   )
 }

@@ -4,21 +4,54 @@ const initialVal = {
   email: "",
   number: "",
   message: "",
+  subscribe: false,
 }
+
+const regexPatterns = {
+  name: /^[a-zA-Z\s'-]+$/,
+  email: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+  number: /^\+977-?9[6-8]\d{8}$/,
+}
+
 export function HandlingMultipleInputs() {
   const [formData, setFormData] = useState(initialVal)
+  const [error, setError] = useState({})
 
   function handleChange(e) {
     const { name, value } = e.target
-
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+    }))
+    validateInput(name, value)
+  }
+  function handleCheckboxChange(e) {
+    const { name, checked } = e.target
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: checked,
+    }))
+    // validateInput(name, value)
+  }
+
+  function validateInput(name, value) {
+    let errorMessage = ""
+    if (regexPatterns[name] && !regexPatterns[name].test(value)) {
+      errorMessage = `*Please enter a valid ${name}`
+    }
+    setError((prevError) => ({
+      ...prevError,
+      [name]: errorMessage,
     }))
   }
 
   function handleSubmit(e) {
     e.preventDefault()
+    for (const key in error) {
+      if (error[key]) {
+        return
+      }
+    }
     console.log(formData)
     setFormData(initialVal)
   }
@@ -33,7 +66,9 @@ export function HandlingMultipleInputs() {
           id=""
           value={formData.name}
           onChange={handleChange}
+          placeholder="Eg: Aayush Dhakal"
         />{" "}
+        {error.name && <dl>{error.name}</dl>}
         <br />
         <label htmlFor="">Email</label>
         <input
@@ -42,16 +77,20 @@ export function HandlingMultipleInputs() {
           id=""
           value={formData.email}
           onChange={handleChange}
+          placeholder="Eg: example@gmail.com"
         />{" "}
+        {error.email && <dl>{error.email}</dl>}
         <br />
         <label htmlFor="">Phone</label>
         <input
-          type="number"
+          type="text"
           name="number"
           id=""
           value={formData.number}
           onChange={handleChange}
+          placeholder="Eg: +9779812345678"
         />{" "}
+        {error.number && <dl>{error.number}</dl>}
         <br />
         <label htmlFor="">Message</label>
         <input
@@ -60,6 +99,14 @@ export function HandlingMultipleInputs() {
           id=""
           value={formData.message}
           onChange={handleChange}
+        />
+        <br />
+        <input
+          type="checkbox"
+          name="subscribe"
+          id=""
+          checked={formData.subscribe}
+          onChange={handleCheckboxChange}
         />
         <br />
         <button type="submit"> Submit</button>
@@ -114,3 +161,16 @@ export function HandlingMultipleInputs() {
 //8. Redux Form
 //9. Yup
 //10. Formsy
+
+//The elements like input, textarea, and select maintain their own state and update it based on user input.
+//Some more block elements are:
+//1. address
+//2. article
+//3. aside
+//4. blockquote
+//5. details
+//6. dialog
+//7. dl
+//8. dl
+//9. fieldset
+//10. figcaption

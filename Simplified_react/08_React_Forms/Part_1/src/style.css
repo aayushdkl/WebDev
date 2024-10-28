@@ -78,3 +78,7 @@ input::placeholder {
 input:focus-visible {
   outline: none;
 }
+
+dl {
+  color: red;
+}
