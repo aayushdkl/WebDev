@@ -3,6 +3,7 @@ import { RecoilRoot } from "recoil"
 import Counter from "../components/Counter"
 import DoubleCounter from "../components/DoubleCounter"
 import CustomCounter from "../components/CustomCounter"
+import TodoList from "../components/TodoList"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function MyApp() {
       <Counter />
       <DoubleCounter />
       <CustomCounter />
+      <TodoList />
     </>
   )
 }

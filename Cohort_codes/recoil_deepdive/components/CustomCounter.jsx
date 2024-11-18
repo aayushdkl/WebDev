@@ -16,6 +16,9 @@ export default function CustomCounter() {
       <h3>Custom Counter:{count}</h3>
       <button onClick={countInc}>+5</button>
       <button onClick={countDec}>-5</button>
+      <br />
+      <br />
+      <br />
     </div>
   )
 }
