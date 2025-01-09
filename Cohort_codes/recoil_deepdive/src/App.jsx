@@ -1,15 +1,19 @@
-import { useState } from "react"
-import { RecoilRoot } from "recoil"
+import { useMemo, useState } from "react"
+import { RecoilRoot, snapshot_UNSTABLE } from "recoil"
 import Counter from "../components/Counter"
 import DoubleCounter from "../components/DoubleCounter"
 import CustomCounter from "../components/CustomCounter"
 import TodoList from "../components/TodoList"
 import UserList from "../components/UserList"
-// import { RecoilDevTools } from "recoil-devtools"
-function App() {
+import { countAtom } from "../recoil/atoms"
+
+function App({ initialRecoilState }) {
   return (
-    <RecoilRoot>
-      {/* <RecoilDevTools /> */}
+    <RecoilRoot
+      initializeState={(snap) =>
+        snap.set(countAtom, initialRecoilState?.countAtom || 0)
+      }
+    >
       <MyApp />
     </RecoilRoot>
   )
