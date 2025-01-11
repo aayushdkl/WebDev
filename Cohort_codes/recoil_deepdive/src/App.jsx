@@ -6,13 +6,13 @@ import CustomCounter from "../components/CustomCounter"
 import TodoList from "../components/TodoList"
 import UserList from "../components/UserList"
 import { countAtom } from "../recoil/atoms"
-
+import { ShoppingCart } from "../components/ShoppingCart"
 function App({ initialRecoilState }) {
   return (
     <RecoilRoot
-      initializeState={(snap) =>
-        snap.set(countAtom, initialRecoilState?.countAtom || 0)
-      }
+    // initializeState={(snap) =>
+    // snap.set(countAtom, initialRecoilState?.countAtom || 0)
+    // }
     >
       <MyApp />
     </RecoilRoot>
@@ -22,11 +22,12 @@ function App({ initialRecoilState }) {
 function MyApp() {
   return (
     <>
-      <Counter />
+      {/* <Counter />
       <DoubleCounter />
       <CustomCounter />
       <TodoList />
-      <UserList />
+      <UserList /> */}
+      <ShoppingCart></ShoppingCart>
     </>
   )
 }
