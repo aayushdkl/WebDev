@@ -2,7 +2,7 @@ import React from "react"
 import Laptop from "../assets/laptop.jpg"
 export const Analytics = () => {
   return (
-    <div className="w-full bg-white grid pt-8 mt-8 md:grid-cols-2">
+    <div className="w-full bg-white grid pt-8 mt-8 md:grid-cols-2 ">
       <div className="mx-auto grid ">
         <img src={Laptop} alt="" className="w-56 pb-4" />
       </div>
