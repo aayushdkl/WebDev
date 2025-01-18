@@ -2,7 +2,7 @@ import { ReactTyped } from "react-typed"
 
 export default function Hero() {
   return (
-    <div className="h-full mt-32 md:mt-24 pb-10">
+    <div className="h-full mt-32 md:mt-24 pb-16">
       <div className="text-[#00df9a] uppercase font-bold text-xs text-center pb-3">
         growing with data analytics
       </div>
