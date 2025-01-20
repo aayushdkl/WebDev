@@ -27,9 +27,9 @@
 
 // verifyAge(3)
 
-function delayedCall(fn: () => void) {
-  setTimeout(fn, 1000)
-}
+// function delayedCall(fn: () => void) {
+//   setTimeout(fn, 1000)
+// }
 
 // The way to do apply typescript to the above function is :
 // function delayedCall(fn: () => void): void {
@@ -46,6 +46,37 @@ function delayedCall(fn: () => void) {
 //     return a + b
 //   }
 
-delayedCall(function () {
-  console.log("hello")
-})
+// delayedCall(function () {
+//   console.log("hello")
+// })
+
+// function greet(user: { firstName: string; age: number }) {
+//   console.log(user.firstName)
+// }
+
+// greet({
+//   firstName: "Marshall",
+//   age: 52,
+// })
+
+// interface userType {
+//   firstName: string
+//   lastName: string
+//   age: number
+// }
+
+// function greet (user: userType) {
+
+// }
+
+// let user1 : userType = {
+//   firstName: "Marshall",
+//   lastName: "Mathers"
+//   age: 52
+// }
+
+type StringOrNumber = string | number
+
+function sum(a: StringOrNumber, b: StringOrNumber) {
+  return a + b
+}

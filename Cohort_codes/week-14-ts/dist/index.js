@@ -19,9 +19,9 @@
 //   return false
 // }
 // verifyAge(3)
-function delayedCall(fn) {
-    setTimeout(fn, 1000);
-}
+// function delayedCall(fn: () => void) {
+//   setTimeout(fn, 1000)
+// }
 // The way to do apply typescript to the above function is :
 // function delayedCall(fn: () => void): void {
 //   setTimeout(fn, 1000)
@@ -35,6 +35,13 @@ function delayedCall(fn) {
 //   return function (b: number) {
 //     return a + b
 //   }
-delayedCall(function () {
-    console.log("hello");
+// delayedCall(function () {
+//   console.log("hello")
+// })
+function greet(user) {
+    console.log(user.firstName);
+}
+greet({
+    firstName: "Marshall",
+    age: 52,
 });
