@@ -1,7 +1,5 @@
 //1. Primitive Types
 
-import { Types } from "mongoose"
-
 //a. Number
 let age: number = 16
 let price: number = 28
@@ -127,12 +125,12 @@ printValue(42) // Output: Number value: 42
 
 // 2.Literal Types
 
-let status: "success" | "loading " | "error "
+let statusIs: "success" | "loading " | "error "
 
-status = "loading "
-status = "error "
-status = "success"
-// status = "pending "
+statusIs = "loading "
+statusIs = "error "
+statusIs = "success"
+// statusIs = "pending "
 
 //example:
 function processStatus(status: "success" | "error" | "loading") {
@@ -209,3 +207,56 @@ let stud1: Student = {
   id: 3,
   name: "george",
 }
+
+// 6. Functions in TypeScript (Parameter and Return Types)
+
+//a. Parameter Type Annotations
+
+function greet(name: string): void {
+  console.log(`Hello ${name}`)
+}
+greet("ayush")
+
+// b. Return Type Annotations
+function sumOfNo(a: number, b: number): number {
+  return a + b
+}
+let resssIs = sumOfNo(3, 2)
+
+//c. Optional Parameters
+function sumOfNo2(a: number = 4, b?: number): number {
+  return b ? a + b : a
+}
+let resssIs2 = sumOfNo(3, 2)
+
+// d. Rest Parameters
+function sumAll(...numbers: number[]): number {
+  return numbers.reduce((total, sum) => total + sum, 0)
+}
+sumAll(1, 2, 3, 4, 5)
+
+// e. Arrow function
+type sumNum = (x: number, y: number) => number
+const sumOfNo3: sumNum = (x, y) => x + y
+sumOfNo3(3, 2)
+
+// Practice Problems
+// 1. Write a function calculateArea that:
+// Accepts shape ("circle" or "square") as the first parameter.
+// For "circle," accept the radius as the second parameter.
+// For "square," accept the side length as the second parameter.
+// Return the area.
+
+type Shape = "circle" | "square"
+function calculateArea(shape: Shape, value: number) {
+  if (shape === "circle") {
+    return 3.14 * value * value
+  } else {
+    return value * value
+  }
+}
+calculateArea("circle", 3)
+
+// 2. Create a function introduce that:
+// Takes two parameters: name (string) and age (optional, number).
+// Logs a message: "Hi, I am <name>". If age is provided, also log "I am <age> years old."
