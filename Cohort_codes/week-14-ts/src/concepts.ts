@@ -260,3 +260,41 @@ calculateArea("circle", 3)
 // 2. Create a function introduce that:
 // Takes two parameters: name (string) and age (optional, number).
 // Logs a message: "Hi, I am <name>". If age is provided, also log "I am <age> years old."
+
+function introduce(name: string, age?: number) {
+  age
+    ? console.log(`Hi, I am ${name} and I am ${age} years old`)
+    : console.log(`Hi, I am ${name} `)
+}
+introduce("marshall", 52)
+
+// 3. Define a MathOperation function type for (a: number, b: number) => number.
+// Implement add, subtract, multiply, and divide functions using this type.
+
+type fxMathTemplate = (a: number, b: number) => number
+
+const add: fxMathTemplate = (a, b) => a + b
+add(3, 2)
+
+const sub: fxMathTemplate = (a, b) => a - b
+sub(3, 2)
+
+const mul: fxMathTemplate = (x, y) => x * y
+mul(3, 2)
+
+const div: fxMathTemplate = (x, y) => x / y
+div(3, 2)
+
+// 4. Create a function sumAndMultiply that:
+// Accepts an array of numbers as a rest parameter.
+// Returns an object with the sum and the product of all the numbers.
+function sumAndMultiply(...nums: Array<number>): object {
+  return {
+    sum: nums.reduce((total, sum) => total + sum, 0),
+    mul: nums.reduce((total, mul) => total * mul, 1),
+  }
+}
+let resIsThis = sumAndMultiply(1, 2, 3, 4, 5)
+console.log(resIsThis)
+
+// 7. Arrays and Tuples in TypeScript

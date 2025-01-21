@@ -163,7 +163,51 @@ function sumOfNo(a, b) {
 }
 let resssIs = sumOfNo(3, 2);
 //c. Optional Parameters
-function sumOfNo2(a, b) {
+function sumOfNo2(a = 4, b) {
     return b ? a + b : a;
 }
 let resssIs2 = sumOfNo(3, 2);
+// d. Rest Parameters
+function sumAll(...numbers) {
+    return numbers.reduce((total, sum) => total + sum, 0);
+}
+sumAll(1, 2, 3, 4, 5);
+const sumOfNo3 = (x, y) => x + y;
+sumOfNo3(3, 2);
+function calculateArea(shape, value) {
+    if (shape === "circle") {
+        return 3.14 * value * value;
+    }
+    else {
+        return value * value;
+    }
+}
+calculateArea("circle", 3);
+// 2. Create a function introduce that:
+// Takes two parameters: name (string) and age (optional, number).
+// Logs a message: "Hi, I am <name>". If age is provided, also log "I am <age> years old."
+function introduce(name, age) {
+    age
+        ? console.log(`Hi, I am ${name} and I am ${age} years old`)
+        : console.log(`Hi, I am ${name} `);
+}
+introduce("marshall", 52);
+const add = (a, b) => a + b;
+add(3, 2);
+const sub = (a, b) => a - b;
+sub(3, 2);
+const mul = (x, y) => x * y;
+mul(3, 2);
+const div = (x, y) => x / y;
+div(3, 2);
+// 4. Create a function sumAndMultiply that:
+// Accepts an array of numbers as a rest parameter.
+// Returns an object with the sum and the product of all the numbers.
+function sumAndMultiply(...nums) {
+    return {
+        sum: nums.reduce((total, sum) => total + sum, 0),
+        mul: nums.reduce((total, mul) => total * mul, 1),
+    };
+}
+let resIsThis = sumAndMultiply(1, 2, 3, 4, 5);
+console.log(resIsThis);
