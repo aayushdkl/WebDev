@@ -75,8 +75,20 @@
 //   age: 52
 // }
 
-type StringOrNumber = string | number
+// type SumInput = string | number
 
-function sum(a: StringOrNumber, b: StringOrNumber) {
-  return a + b
-}
+// function sum(a: SumInput, b: SumInput) {
+//   return a + b
+// }
+
+// interface Manager {
+//   name: string
+//   age: number
+// }
+
+// interface Employee {
+//   name: string
+//   department: string
+// }
+
+// type TeamLead = Manager | Employee

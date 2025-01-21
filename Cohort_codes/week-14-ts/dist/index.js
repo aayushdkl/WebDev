@@ -38,10 +38,35 @@
 // delayedCall(function () {
 //   console.log("hello")
 // })
-function greet(user) {
-    console.log(user.firstName);
-}
-greet({
-    firstName: "Marshall",
-    age: 52,
-});
+// function greet(user: { firstName: string; age: number }) {
+//   console.log(user.firstName)
+// }
+// greet({
+//   firstName: "Marshall",
+//   age: 52,
+// })
+// interface userType {
+//   firstName: string
+//   lastName: string
+//   age: number
+// }
+// function greet (user: userType) {
+// }
+// let user1 : userType = {
+//   firstName: "Marshall",
+//   lastName: "Mathers"
+//   age: 52
+// }
+// type SumInput = string | number
+// function sum(a: SumInput, b: SumInput) {
+//   return a + b
+// }
+// interface Manager {
+//   name: string
+//   age: number
+// }
+// interface Employee {
+//   name: string
+//   department: string
+// }
+// type TeamLead = Manager | Employee
