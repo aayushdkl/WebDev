@@ -2,7 +2,7 @@ import { useRef, useState } from "react"
 import { CrossIcon } from "../../icons/Crossicon"
 import { Button } from "../ui/Button"
 import { Input } from "../ui/Input"
-import { BACKEND_URL } from "../config"
+import { BACKEND_URL } from "../../../../src/config"
 import axios from "axios"
 
 enum ContentType {
